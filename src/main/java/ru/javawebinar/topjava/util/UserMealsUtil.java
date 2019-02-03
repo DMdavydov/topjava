@@ -23,8 +23,6 @@ public class UserMealsUtil {
         result.forEach(System.out::println);
         List<UserMealWithExceed> resultCycle = getFilteredWithExceededBySimpleCycle(mealList, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000);
         resultCycle.forEach(System.out::println);
-//        .toLocalDate();
-//        .toLocalTime();
     }
 
     private static List<UserMealWithExceed> getFilteredWithExceededByStream(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
@@ -50,6 +48,5 @@ public class UserMealsUtil {
             }
         });
         return userMealWithExceed;
-
     }
 }
