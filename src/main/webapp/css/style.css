@@ -1,0 +1,7 @@
+tr[mealExcess="false"] {
+    color: green;
+}
+
+tr[mealExcess="true"] {
+    color: red;
+}
