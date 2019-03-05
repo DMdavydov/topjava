@@ -57,7 +57,7 @@ public class MealServiceTest {
     public Stopwatch stopwatch = new Stopwatch() {
         @Override
         protected void finished(long nanos, Description description) {
-            long ms = stopwatch.runtime(TimeUnit.MILLISECONDS);
+            long ms = TimeUnit.MILLISECONDS.convert(nanos, TimeUnit.NANOSECONDS);
             String methodName = description.getMethodName();
             LOG.info(DURATION_TEST_MARKER, "{} finished, time taken {} ms", methodName, ms);
             SB.append(String.format("%-15s %10s ms\n", methodName, ms));

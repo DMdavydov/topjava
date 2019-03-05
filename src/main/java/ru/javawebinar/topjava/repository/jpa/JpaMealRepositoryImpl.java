@@ -28,7 +28,7 @@ public class JpaMealRepositoryImpl implements MealRepository {
             return meal;
         } else {
             Meal findMeal = get(meal.getId(), userId);
-            if (findMeal != null && findMeal.getUser().getId() == userId) {
+            if (findMeal != null) {
                 User user = em.getReference(User.class, userId);
                 meal.setUser(user);
                 return em.merge(meal);
