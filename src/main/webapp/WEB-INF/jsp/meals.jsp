@@ -17,21 +17,27 @@
             <div class="card-body pb-0">
                 <form id="filter">
                     <div class="row">
-                        <div class="col-3">
-                            <label for="startDate"><spring:message code="meal.startDate"/></label>
-                            <input class="form-control" type="date" name="startDate" id="startDate">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="col-form-label" for="startDate"><spring:message
+                                        code="meal.startDate"/></label>
+                                <input class="form-control col-5" name="startDate" id="startDate">
+
+                                <label class="col-form-label" for="endDate"><spring:message
+                                        code="meal.endDate"/></label>
+                                <input class="form-control col-5" name="endDate" id="endDate">
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <label for="endDate"><spring:message code="meal.endDate"/></label>
-                            <input class="form-control" type="date" name="endDate" id="endDate">
-                        </div>
-                        <div class="offset-2 col-2">
-                            <label for="startTime"><spring:message code="meal.startTime"/></label>
-                            <input class="form-control" type="time" name="startTime" id="startTime">
-                        </div>
-                        <div class="col-2">
-                            <label for="endTime"><spring:message code="meal.endTime"/></label>
-                            <input class="form-control" type="time" name="endTime" id="endTime">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="col-form-label" for="startTime"><spring:message
+                                        code="meal.startTime"/></label>
+                                <input class="form-control col-3" name="startTime" id="startTime">
+
+                                <label class="col-form-label" for="endTime"><spring:message
+                                        code="meal.endTime"/></label>
+                                <input class="form-control col-3" name="endTime" id="endTime">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -62,13 +68,13 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${meals}" var="meal">
+            <%--<c:forEach items="${meals}" var="meal">
                 <jsp:useBean id="meal" type="ru.javawebinar.topjava.to.MealTo"/>
                 <tr data-mealExcess="${meal.excess}">
                     <td>
-                            <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
-                            <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
-                            <%--${fn:replace(meal.dateTime, 'T', ' ')}--%>
+                            &lt;%&ndash;${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}&ndash;%&gt;
+                            &lt;%&ndash;<%=TimeUtil.toString(meal.getDateTime())%>&ndash;%&gt;
+                            &lt;%&ndash;${fn:replace(meal.dateTime, 'T', ' ')}&ndash;%&gt;
                             ${fn:formatDateTime(meal.dateTime)}
                     </td>
                     <td>${meal.description}</td>
@@ -76,7 +82,7 @@
                     <td><a><span class="fa fa-pencil"></span></a></td>
                     <td><a onclick="deleteRow(${meal.id})"><span class="fa fa-remove"></span></a></td>
                 </tr>
-            </c:forEach>
+            </c:forEach>--%>
         </table>
     </div>
 </div>
@@ -94,8 +100,9 @@
 
                     <div class="form-group">
                         <label for="dateTime" class="col-form-label"><spring:message code="meal.dateTime"/></label>
-                        <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
-                               placeholder="<spring:message code="meal.dateTime"/>">
+                        <input id="dateTime" type="text" name="dateTime" placeholder="<spring:message code="meal.dateTime"/>">
+                        <%--<input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
+                               placeholder="<spring:message code="meal.dateTime"/>">--%>
                     </div>
 
                     <div class="form-group">
@@ -124,6 +131,10 @@
         </div>
     </div>
 </div>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<jsp:include page="fragments/i18n.jsp">
+    <jsp:param name="page" value="meal"/>
+</jsp:include>
 </html>

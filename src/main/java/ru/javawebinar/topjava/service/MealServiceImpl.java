@@ -2,9 +2,12 @@ package ru.javawebinar.topjava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.to.MealTo;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,6 +44,13 @@ public class MealServiceImpl implements MealService {
     @Override
     public List<Meal> getAll(int userId) {
         return repository.getAll(userId);
+    }
+
+    @Transactional
+    @Override
+    public void update(MealTo mealTo, int userId) {
+        Meal meal = get(mealTo.getId(), userId);
+        repository.save(MealsUtil.updateFromTo(meal, mealTo), userId);
     }
 
     @Override

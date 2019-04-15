@@ -29,6 +29,10 @@ public class TestUtil {
         return JsonUtil.readValues(getContent(result), clazz);
     }
 
+    public static <T> T readFromJsonResultActions(ResultActions action, Class<T> clazz) throws UnsupportedEncodingException {
+        return readFromJsonMvcResult(action.andReturn(), clazz);
+    }
+
     public static void mockAuthorize(User user) {
         SecurityContextHolder.getContext().setAuthentication(
                 new UsernamePasswordAuthenticationToken(new AuthorizedUser(user), null, user.getRoles()));

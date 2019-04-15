@@ -10,7 +10,8 @@ function enable(chkbox, id) {
     }).done(function () {
         chkbox.closest("tr").attr("data-userEnabled", enabled);
         successNoty(enabled ? "common.enabled" : "common.disabled");
-    }).fail(function () {
+    }).fail(function (jqXHR, options, jsExc) {
+        failNoty(jqXHR);
         $(chkbox).prop("checked", !enabled);
     });
 }

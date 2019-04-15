@@ -54,4 +54,12 @@ public class MealTestData {
     public static ResultMatcher contentJson(Iterable<MealTo> expected) {
         return result -> assertThat(readListFromJsonMvcResult(result, MealTo.class)).isEqualTo(expected);
     }
+
+    public static ResultMatcher getToMatcher(MealTo... expected) {
+        return getToMatcher(List.of(expected));
+    }
+
+    public static ResultMatcher getToMatcher(Iterable<MealTo> expected) {
+        return result -> assertThat(readListFromJsonMvcResult(result, MealTo.class)).isEqualTo(expected);
+    }
 }
